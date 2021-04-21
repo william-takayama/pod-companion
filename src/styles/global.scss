@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #fff;
+
+  --gray-50: #f7f8fa;
+  --gray-100: #e6e8eb;
+  --gray-200: #afb2b1;
+  --gray-500: #808080;
+  --gray-800: #494d4b;
+
+  --green-500: #04d361;
+
+  --purple-300: #9f75ff;
+  --purple-400: #9164fa;
+  --purple-500: #8257e5;
+  --purple-800: #6f48c9;
+
+  --color-primary: var(--white);
+  --color-secondary: var(--gray-800);
+
+  --color-background: var(--color-primary);
+  --color-foreground: var(--color-secondary);
+
+  --color-contrast: var(--gray-50);
+  --color-x-contrast: var(--gray-100);
+  --color-xx-contrast: var(--gray-200);
+  --color-xxx-contrast: var(--gray-500);
+  --color-xxxx-contrast: var(--gray-800);
+
+  --color-accent: var(--purple-300);
+  --color-x-accent: var(--purple-400);
+  --color-xx-accent: var(--purple-500);
+  --color-xxx-accent: var(--purple-800);
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+body {
+  background: var(--color-foreground);
+}
+
+body,
+input,
+textarea,
+button {
+  font: 500 1rem Inter, sans-serif;
+  color: var(--color-xxx-contrast);
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-weight: 600;
+    font-family: Lexend, sans-serif;
+    color: var(--color-contrast);
+  }
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+button {
+  cursor: pointer;
+}
