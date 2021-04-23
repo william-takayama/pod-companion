@@ -33,7 +33,7 @@ export default function HomePageComponent({
               <div className={classes.episodeDetails}>
                 <a href="a">{episode.title}</a>
                 <p>{episode.members}</p>
-                <span>{episode.publishedAt}</span>
+                <span>{episode.published_at}</span>
                 <span>{episode.file.durationAsString}</span>
               </div>
 
@@ -83,7 +83,7 @@ export default function HomePageComponent({
                   </motion.a>
                 </td>
                 <td>{episode.members}</td>
-                <td className={classes.publishedAt}>{episode.publishedAt}</td>
+                <td className={classes.publishedAt}>{episode.published_at}</td>
                 <td>{episode.file.durationAsString}</td>
                 <td>
                   <motion.button
