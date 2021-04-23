@@ -1,7 +1,7 @@
 .container {
   display: flex;
   align-items: center;
-  height: 6.5rem;
+  height: var(--size-header-height);
   padding: 2rem 4rem;
   background: var(--color-primary);
   border-bottom: 1px solid var(--color-x-contrast);
