@@ -1,0 +1,152 @@
+.container {
+  padding: 0 4rem;
+  height: calc(100vh - var(--size-header-height));
+  overflow-y: scroll;
+}
+
+.title {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.item {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-x-contrast);
+  padding: 1.25rem;
+  border-radius: 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 1rem;
+}
+
+.episodeDetails {
+  flex: 1;
+  margin-left: 1rem;
+
+  a {
+    display: block;
+    color: var(--color-xxxx-contrast);
+    font-family: Lexend, sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    line-height: 1.4rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    max-width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  span {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+
+    &:last-child {
+      margin-left: 0.5rem;
+      padding-left: 0.5rem;
+      position: relative;
+
+      &::before {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 2px;
+        background-color: #ddd;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
+
+.button {
+  bottom: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-x-contrast);
+  border-radius: 0.675rem;
+  font-size: 0;
+
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &.reposition {
+    position: absolute;
+    right: 2rem;
+  }
+}
+
+.allEpisodes {
+  padding-bottom: 2rem;
+}
+
+.table {
+  width: 100%;
+
+  th,
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-x-contrast);
+  }
+
+  th {
+    color: var(--color-xx-contrast);
+    text-transform: uppercase;
+    font: 500 0.75rem Lexend, sans-serif;
+    text-align: left;
+  }
+
+  td {
+    font-size: 0.875rem;
+
+    img {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+    }
+
+    a {
+      color: var(--color-x-contrast);
+      font-family: Lexend, sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      line-height: 1.4rem;
+      font-size: 1rem;
+    }
+  }
+
+  .thumbnailContainer {
+    min-width: 72px;
+  }
+
+  .publishedAt {
+    min-width: 100px;
+  }
+}
