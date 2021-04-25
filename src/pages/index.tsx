@@ -7,13 +7,13 @@ import { Episode } from "../interfaces/Episodes";
 import { api } from "../services/api";
 import { convertDurationToTimeString } from "../utils/convertDurationToTimeString";
 
-interface HomeProps {
-  latestEpisodes: Episode[];
-  allEpisodes: Episode[];
+export interface HomeProps {
+  latestEpisodes: Omit<Episode, "description">[];
+  allEpisodes: Omit<Episode, "description">[];
 }
 
 export default function Home({ ...rest }: HomeProps): JSX.Element {
-  return <HomePageComponent {...rest} />;
+  return <HomePageComponent {...(rest as HomeProps)} />;
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -26,23 +26,16 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const episodes = data?.map((episode) => {
-    const {
-      id,
-      title,
-      members,
-      published_at,
-      thumbnail,
-      description,
-      file,
-    } = episode;
+    const { id, title, members, published_at, thumbnail, file } = episode;
 
     return {
       id,
       title,
       members,
-      publishedAt: format(parseISO(published_at), "d MMM yy", { locale: ptBR }),
+      published_at: format(parseISO(published_at), "d MMM yy", {
+        locale: ptBR,
+      }),
       thumbnail,
-      description,
       file: {
         url: file.url,
         type: file.type,
