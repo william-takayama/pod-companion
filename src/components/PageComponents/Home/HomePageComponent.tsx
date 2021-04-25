@@ -1,18 +1,14 @@
-import Image from "next/image";
-import { motion } from "framer-motion";
 import cn from "clsx";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { HomeProps } from "../../../pages";
 import classes from "./HomePageComponent.module.scss";
-import { Episode } from "../../../interfaces/Episodes";
-
-interface HomePageComponentProps {
-  allEpisodes: Episode[];
-  latestEpisodes: Episode[];
-}
 
 export default function HomePageComponent({
   allEpisodes,
   latestEpisodes,
-}: HomePageComponentProps) {
+}: HomeProps) {
   return (
     <div className={classes.container}>
       <section className={classes.latestEpisodes}>
@@ -31,7 +27,11 @@ export default function HomePageComponent({
               />
 
               <div className={classes.episodeDetails}>
-                <a href="a">{episode.title}</a>
+                <Link href={`/episodes/${episode?.id}`} prefetch>
+                  <motion.a whileHover={{ textDecoration: "underline" }}>
+                    {episode.title}
+                  </motion.a>
+                </Link>
                 <p>{episode.members}</p>
                 <span>{episode.published_at}</span>
                 <span>{episode.file.durationAsString}</span>
@@ -55,12 +55,14 @@ export default function HomePageComponent({
 
         <table cellSpacing={0} className={classes.table}>
           <thead>
-            <th aria-label="white space" />
-            <th>Podcast</th>
-            <th>Members</th>
-            <th>Data</th>
-            <th>Duration</th>
-            <th aria-label="white space" />
+            <tr>
+              <th aria-label="white space" />
+              <th>Podcast</th>
+              <th>Members</th>
+              <th>Data</th>
+              <th>Duration</th>
+              <th aria-label="white space" />
+            </tr>
           </thead>
           <tbody>
             {allEpisodes?.map((episode) => (
@@ -75,15 +77,14 @@ export default function HomePageComponent({
                   />
                 </td>
                 <td>
-                  <motion.a
-                    whileHover={{ textDecoration: "underline" }}
-                    href=""
-                  >
-                    {episode.title}
-                  </motion.a>
+                  <Link href={`/episodes/${episode?.id}`}>
+                    <motion.a whileHover={{ textDecoration: "underline" }}>
+                      {episode.title}
+                    </motion.a>
+                  </Link>
                 </td>
                 <td>{episode.members}</td>
-                <td className={classes.publishedAt}>{episode.published_at}</td>
+                <td className={classes.published_at}>{episode.published_at}</td>
                 <td>{episode.file.durationAsString}</td>
                 <td>
                   <motion.button
