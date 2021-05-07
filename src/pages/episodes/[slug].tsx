@@ -11,22 +11,48 @@ export interface EpisodePageProps {
 }
 
 export default function EpisodePage({ ...rest }: EpisodePageProps) {
+  // When getStaticPaths fallback is true
+  // const { isFallback } = useRouter();
+
+  // if (isFallback) {
+  //   return <p>Loading</p>;
+  // }
+
   return <EpisodePageComponent {...(rest as EpisodePageProps)} />;
 }
 
 // We must implement it in every route that is generated dynamically (with params)
+// Think aboug an e-commerce - /category/c1 and we have 1000 categories
+// Then if we pass every category to the paths, it'll take a MASSIVE AMOUNT OF TIME to run the build
+//
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const a = "";
+  const { data } = await api.get("episodes", {
+    params: {
+      _limit: 2,
+      _sort: "published_at",
+      _order: "desc",
+    },
+  });
+
+  const paths = data?.map((episode) => ({
+    params: {
+      slug: episode.id,
+    },
+  }));
 
   return {
     // which paths we want to create during build time
-    paths: [
-      {
-        params: {
-          slug: "a-importancia-da-contribuicao-em-open-source",
-        },
-      },
-    ],
+    paths,
+    // false = does not return anything if the path was not created during build time
+    //
+    // true = episode not created statically during build time it will try
+    // to retrieve data to create the page on CLIENT SIDE = INCREMETAL STATIC REGENERATION
+    // then we need to ensure that our DATA is available - on client side use:
+    // const { isFallback } = useRouter();
+    // if(isFallback) <p>Loading</p>
+    //
+    // 'blocking' = same as true but will run on NEXTJS side = INCREMETAL STATIC REGENERATION
+    // BEST for SEO
     fallback: "blocking",
   };
 };
