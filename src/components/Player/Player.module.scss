@@ -1,6 +1,6 @@
 .container {
   padding: 3rem 4rem;
-  width: 26.5rem;
+  width: var(--size-player-width);
   height: 100vh;
 
   background: var(--color-xx-accent);
@@ -10,6 +10,10 @@
   flex-flow: column;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .header {
